@@ -1,5 +1,5 @@
 <template>
   <div style="border:1px solid red">
-    组件
+    第一次提交
   </div>
 </template>
