@@ -1,8 +1,8 @@
 <template>
-<Switch :value="y" @change="y = $event"/>
+<Switch v-model:value="bool"/>
 </template>
 
 <script setup>
 import Switch from '../libs/Switch.vue'
-const y = ref(true)
+const bool = ref(false)
 </script> 

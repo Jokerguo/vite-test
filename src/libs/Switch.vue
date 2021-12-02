@@ -3,15 +3,11 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  value: {
-    type: Boolean
-  }
-})
-const emits = defineEmits(['change'])
+const props = defineProps({ value: Boolean })
+const emits = defineEmits(['update:value'])
 
 const toggle = ()=>{
-  emits('change',!props.value)
+  emits('update:value',!props.value)
 }
 </script>
 
