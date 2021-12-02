@@ -3,5 +3,6 @@
 </template>
 
 <script setup>
-console.log('==========hello script setup')
+const asideVisible = ref(false)
+provide('asideVisible',asideVisible)
 </script>

@@ -4,6 +4,7 @@ import './index.scss'
 import { createWebHashHistory, createRouter } from 'vue-router'
 import Home from './views/Home.vue'
 import Doc from './views/Doc.vue'
+import 'vue-global-api'
 
 const histroy = createWebHashHistory()
 const router = createRouter({
