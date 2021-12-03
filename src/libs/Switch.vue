@@ -36,6 +36,6 @@ const toggle = ()=>{
     background: blue;
   }
   button.checked > span{
-    left: calc(100% - $h2 - 2px);
+    left: calc(100% - #{$h2} - 2px);
   }
 </style> 

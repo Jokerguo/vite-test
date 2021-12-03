@@ -1,6 +1,6 @@
 <template>
   <div :size="size">
-    <button v-bind="rest">
+    <button v-bind="$attrs">
       <slot></slot>
     </button>
   </div>
@@ -12,11 +12,7 @@ inheritAttrs : false,
 }
 </script>
 <script setup>
-import { useAttrs } from 'vue'
-const {size,...rest} = useAttrs() //剩余参数rest
 </script>
-
-
 
 <style scoped>
 div{

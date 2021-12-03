@@ -4,16 +4,14 @@
 <Button @click="onClick"
         @focus="onClick"
         @mouseover="onClick"
-        size="small"
 >你好啊</Button>
 
 </template>
 
 <script setup>
 import Button from '../libs/Button.vue';
+console.log(1111)
 
-const onClick = ()=>{
-  console.log(11111);
-}
+const onClick = ()=>{ console.log(22221) }
 
 </script>

@@ -2,12 +2,12 @@
   "name": "vite-project",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview --host"
   },
   "dependencies": {
-    "sass": "^1.44.0",
+    "sass": "1.32.0",
     "vue": "^3.2.16",
     "vue-global-api": "^0.4.1",
     "vue-router": "4.0.0-beta.3"
