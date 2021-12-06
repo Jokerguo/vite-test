@@ -5,7 +5,7 @@
         class="gulu-tabs-nav-item"
         :class="{ selected: selected === t }"
         v-for="(t, index) in titles"
-        :ref="setItemRef"
+        :ref="(el: any) => {if(t===selected) selectedItem = el}"
         :key="index"
         @click="select(t)"
       >
@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import Tab from './Tab.vue'
 import { useSlots } from 'vue'
-const refs = ref<HTMLDivElement[]>([])
+const selectedItem = ref<HTMLDivElement>(null)
 const indicator = ref<HTMLDivElement>(null)
 const container = ref<HTMLDivElement>(null)
 const slots = useSlots()
@@ -50,20 +50,18 @@ const select = (t) => {
 const current = computed(() => {
   return defaults.filter((ele) => ele.props.title === props.selected)[0]
 })
-const setItemRef = (el)=>{
-  if(el)refs.value.push(el)
-}
-const x = ()=>{
-  const divs = refs.value
-  const result = divs.filter(div=>div.classList.contains('selected'))[0]
-  const {width} = result.getBoundingClientRect()
-  indicator.value.style.width = width + 'px'
-  const {left:left1} = container.value.getBoundingClientRect()
-  const {left:left2} = result.getBoundingClientRect()
-  indicator.value.style.left = left2 - left1 + 'px' 
-}
-onMounted(x)
-onUpdated(x)
+onMounted(()=>{
+  watchEffect(()=>{
+    //watchEffect在Mounted之前也会执行
+    // if(!selectedItem.value || !container.value || !indicator.value)return
+    const {width} = selectedItem.value.getBoundingClientRect()
+    indicator.value.style.width = width + 'px'
+    const {left:left1} = container.value.getBoundingClientRect()
+    const {left:left2} = selectedItem.value.getBoundingClientRect()
+    indicator.value.style.left = left2 - left1 + 'px' 
+  })
+})
+
 </script>
 
 <style lang="scss">
