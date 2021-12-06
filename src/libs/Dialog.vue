@@ -1,19 +1,23 @@
 <template>
   <template v-if="visible">
-    <div class="gulu-dialog-overlay"></div>
-    <div class="gulu-dialog-wrapper">
-      <div class="gulu-dialog">
-        <header>标题 <span class="gulu-dialog-close"></span></header>
-        <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
-        </main>
-        <footer>
-          <Button level="main">OK</Button>
-          <Button>Cancel</Button>
-        </footer>
+    <Teleport to="body">
+      <div class="gulu-dialog-overlay" @click="onClickOverlayClose"></div>
+      <div class="gulu-dialog-wrapper">
+        <div class="gulu-dialog">
+          <header>
+            <slot name="header" />
+            <span @click="close" class="gulu-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="content" />
+          </main>
+          <footer>
+            <Button level="main" @click="ok">OK</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 
@@ -24,7 +28,40 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  title: {
+    type: String,
+    default: '默认标题',
+  },
+  clickOverlayClose: {
+    type: Boolean,
+    default: true,
+  },
+  ok: {
+    type: Function,
+  },
+  cancel: {
+    type: Function,
+  },
 })
+const emits = defineEmits(['update:visible'])
+const close = () => {
+  emits('update:visible', false)
+}
+const onClickOverlayClose = () => {
+  if (props.clickOverlayClose) {
+    close()
+  }
+}
+const ok = () => {
+  if (props.ok?.() !== false) {
+    close()
+  }
+}
+const cancel = () => {
+  if (props.cancel?.() !== false) {
+    close()
+  }
+}
 </script>
 
 <style lang="scss">
