@@ -28,10 +28,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  title: {
-    type: String,
-    default: '默认标题',
-  },
   clickOverlayClose: {
     type: Boolean,
     default: true,

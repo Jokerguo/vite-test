@@ -15,11 +15,16 @@
       <div>第二行</div>
     </template>
   </Dialog>
+
+  <h2>实例2 直接函数打开</h2> 
+  <Button @click="showDialog">按钮2</Button>
+
 </template>
 
 <script setup>
 import Dialog from '../libs/Dialog.vue'
 import Button from '../libs/Button.vue'
+import { openDialog } from '../libs/openDialog'
 const visible = ref(false)
 const toggle = () => {
   visible.value = !visible.value
@@ -30,5 +35,11 @@ const f1 = () => {
 }
 const f2 = () => {
   console.log(222)
+}
+const showDialog = ()=>{
+  openDialog({
+    title: '标题',
+    content: '哈哈哈'
+  })
 }
 </script>
